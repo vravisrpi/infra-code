@@ -1,0 +1,30 @@
+from pprint import pprint
+from googleapiclient import discovery
+from oauth2client.client import GoogleCredentials
+
+def start_vm(request):
+    credentials = GoogleCredentials.get_application_default()
+    service = discovery.build('compute', 'v1', credentials=credentials)
+    zone = 'us-central1-a'
+    instance = ['flexi-cap-serv', 'flexi-capture-instnace', 'para-form-xtra']
+    project='synt-int-ai-poc-prd-2'
+    for i in range(3):
+       #request = service.instances().start(project=project, zone=zone, instance=instance[0])
+       request = service.instances().start(project=project, zone=zone, instance=instance[i])
+       response = request.execute()
+
+
+################################
+
+# Function dependencies, for example:
+# package>=version
+google-api-python-client
+oauth2client
+
+######################################
+
+0 19 * * 1-5
+
+mins - hours * * (Mon-Fri)
+
+####################################
